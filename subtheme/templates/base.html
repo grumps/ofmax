@@ -45,7 +45,7 @@ $(function() {
 </head>
 <body id="{% block body_id %}body{% endblock %}">
 
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-bot">
 <div class="navbar-inner">
 <div class="container">
     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -64,7 +64,6 @@ $(function() {
 </div>
 
 <div class="container">
-
 {% nevercache %}
 {% for message in messages %}
 <div class="alert alert-{{ message.tags }}" data-alert="alert">
@@ -72,10 +71,8 @@ $(function() {
 </div>
 {% endfor %}
 {% endnevercache %}
-
-
 <h1>{% block title %}{% endblock %}</h1>
-
+</div>
 <div class="container">
 <div class="row">
 
