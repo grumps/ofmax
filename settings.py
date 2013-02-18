@@ -224,7 +224,7 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 ################
 
 INSTALLED_APPS = (
-    "ofmax.subtheme",
+    "subtheme",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
