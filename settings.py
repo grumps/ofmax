@@ -265,7 +265,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # these middleware classes will be applied in the order given, and in the
 # response phase the middleware will be applied in reverse order.
 MIDDLEWARE_CLASSES = (
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+#         "debug_toolbar.middleware.DebugToolbarMiddleware",
     "mezzanine.core.middleware.UpdateCacheMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -295,8 +295,8 @@ PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 
 # These will be added to ``INSTALLED_APPS``, only if available.
 OPTIONAL_APPS = (
-    "debug_toolbar",
-    "django_extensions",
+#   "debug_toolbar",
+#   "django_extensions",
     "compressor",
     PACKAGE_NAME_FILEBROWSER,
     PACKAGE_NAME_GRAPPELLI,
