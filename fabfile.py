@@ -20,7 +20,7 @@ conf = {}
 if sys.argv[0].split(os.sep)[-1] == "fab":
     # Ensure we import settings from the current dir
     try:
-        conf = __import__("settings", globals(), locals(), [], 0).FABRIC
+        conf = __import__("settings", globals(), locals(), [], 0).FABRIC_STAGE
         try:
             conf["HOSTS"][0]
         except (KeyError, ValueError):
@@ -521,3 +521,32 @@ def all():
     install()
     if create():
         deploy()
+############################################
+#kenbolton additions                       #
+#https://gist.github.com/kenbolton/4688803 #
+############################################
+
+@task
+@log_call
+def download_media():
+    media = 'media.tar.gz'
+    run("tar -czvf %s/%s -C %s/static/media/" % (env.proj_path, media,
+        env.proj_path))
+    get('%s/%s' % (env.proj_path, media), media)
+
+@task
+@log_call
+def upload_media():
+    media = 'media.tar.gz'
+    put(media, '%s/static' % env.proj_path)
+    run("tar -xzvf %s/static/%s -C %s/static/" % (
+        env.proj_path, media, env.proj_path))
+
+@task
+#@log_call
+def upload_db():
+    # Upload DB and dump it in.
+    put("dump.sql", env.proj_path)
+    postgres('dropdb %s' % env.proj_name)
+    postgres('createdb %s -O %s' % (env.proj_name, env.proj_name))
+    postgres('pg_restore -c -d %s %s/dump.sql' % (env.proj_name, env.proj_path))

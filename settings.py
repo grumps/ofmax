@@ -315,7 +315,7 @@ FABRIC = {
      "SSH_USER": "vagrant", # SSH username
      "SSH_PASS":  "vagrant", # SSH password (consider key-based authentication)
 #     "SSH_KEY_PATH":  "", # Local path to SSH key file, for key-based auth
-"HOSTS": ['127.0.0.1:2222'], # List of hosts to deploy to
+     "HOSTS": ['127.0.0.1:2222'], # List of hosts to deploy to
      "VIRTUALENV_HOME":  "/home/vagrant/Envs", # Absolute remote path for virtualenvs
      "PROJECT_NAME": "shitty", # Unique identifier for project
      "REQUIREMENTS_PATH": "requirements/project.txt", # Path to pip requirements, relative to project
