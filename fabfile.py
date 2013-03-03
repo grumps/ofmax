@@ -20,7 +20,7 @@ conf = {}
 if sys.argv[0].split(os.sep)[-1] == "fab":
     # Ensure we import settings from the current dir
     try:
-        conf = __import__("settings", globals(), locals(), [], 0).FABRIC_PROD
+        conf = __import__("settings", globals(), locals(), [], 0).FABRIC_STAGE
         try:
             conf["HOSTS"][0]
         except (KeyError, ValueError):
@@ -37,6 +37,7 @@ env.key_filename = conf.get("SSH_KEY_PATH", None)
 env.hosts = conf.get("HOSTS", [])
 
 env.proj_name = conf.get("PROJECT_NAME", os.getcwd().split(os.sep)[-1])
+env.proj_db = conf.get("PROJECT_DB", os.getcwd().split(os.sep)[-1])
 env.venv_home = conf.get("VIRTUALENV_HOME", "/home/%s" % env.user)
 env.venv_path = "%s/%s" % (env.venv_home, env.proj_name)
 env.proj_dirname = "project"
@@ -280,7 +281,7 @@ def backup(filename):
     """
     Backs up the database.
     """
-    return postgres("pg_dump -Fc %s > %s" % (env.proj_name, filename))
+    return postgres("pg_dump -Fc %s > %s" % (env.proj_db, filename))
 
 
 @task
@@ -288,7 +289,7 @@ def restore(filename):
     """
     Restores the database.
     """
-    return postgres("pg_restore -c -d %s %s" % (env.proj_name, filename))
+    return postgres("pg_restore -c -d %s %s" % (env.proj_db, filename))
 
 
 @task
@@ -375,7 +376,7 @@ def create():
     print_command(user_sql.replace("'%s'" % pw, "'%s'" % shadowed))
     psql("CREATE DATABASE %s WITH OWNER %s ENCODING = 'UTF8' "
          "LC_CTYPE = '%s' LC_COLLATE = '%s' TEMPLATE template0;" %
-         (env.proj_name, env.proj_name, env.locale, env.locale))
+         (env.proj_db, env.proj_name, env.locale, env.locale))
 
     # Set up SSL certificate.
     conf_path = "/etc/nginx/conf"
@@ -435,7 +436,7 @@ def remove():
         remote_path = template["remote_path"]
         if exists(remote_path):
             sudo("rm %s" % remote_path)
-    psql("DROP DATABASE %s;" % env.proj_name)
+    psql("DROP DATABASE %s;" % env.proj_db)
     psql("DROP USER %s;" % env.proj_name)
 
 
@@ -547,6 +548,6 @@ def upload_media():
 def upload_db():
     # Upload DB and dump it in.
     put("dump.sql", env.proj_path)
-    postgres('dropdb %s' % env.proj_name)
-    postgres('createdb %s -O %s' % (env.proj_name, env.proj_name))
-    postgres('pg_restore -c -d %s %s/dump.sql' % (env.proj_name, env.proj_path))
+    postgres('dropdb %s' % env.proj_db)
+    postgres('createdb %s -O %s' % (env.proj_db, env.proj_name))
+    postgres('pg_restore -c -d %s %s/dump.sql' % (env.proj_db, env.proj_path))
