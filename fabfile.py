@@ -20,7 +20,8 @@ conf = {}
 if sys.argv[0].split(os.sep)[-1] == "fab":
     # Ensure we import settings from the current dir
     try:
-        conf = __import__("settings", globals(), locals(), [], 0).FABRIC_PROD
+        ############Change here for Enviroment#############
+        conf = __import__("settings", globals(), locals(), [], 0).FABRIC_STAGE
         try:
             conf["HOSTS"][0]
         except (KeyError, ValueError):
@@ -551,3 +552,11 @@ def upload_db():
     postgres('dropdb %s' % env.proj_db)
     postgres('createdb %s -O %s' % (env.proj_db, env.proj_name))
     postgres('pg_restore -c -d %s %s/dump.sql' % (env.proj_db, env.proj_path))
+            
+@task
+@log_call
+def download_db():
+    #Dump and download lastest database.
+    postgres(pg_dump -a -O %s %s/dump.sql' % (env.proj_db, env.proj_path))
+    get('%s/%s' % (env.proj_path, dump.sql))
+
