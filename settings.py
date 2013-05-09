@@ -72,7 +72,7 @@
 
 # Setting to turn on featured images for blog posts. Defaults to False.
 #
-BLOG_USE_FEATURED_IMAGE = True
+# BLOG_USE_FEATURED_IMAGE = True
 
 # If True, the south application will be automatically added to the
 # INSTALLED_APPS setting.
@@ -122,7 +122,7 @@ SITE_ID = 1
 USE_I18N = False
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = "1b1a052b-0af1-459a-b16a-d2af113a27f68d528415-fae4-409c-aada-9b4e2f4b5dd24c44320a-00f8-4a74-a1cc-300637e89d75"
+SECRET_KEY = "8bb0fdbe-d89b-411c-b9d4-0464852f7eff8b66fef6-aa0c-408e-866f-5511e71e55177315e713-c435-4899-b90c-cb08c9acbbd6"
 
 # Tuple of IP addresses, as strings, that:
 #   * See debug comments, when DEBUG is true
@@ -204,11 +204,6 @@ MEDIA_URL = STATIC_URL + "media/"
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip("/").split("/"))
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
-
 # Package/module name to import the root urlpatterns from for the project.
 ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
 
@@ -224,7 +219,7 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 ################
 
 INSTALLED_APPS = (
-    "subtheme",
+    "subtheme",    
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -265,15 +260,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # these middleware classes will be applied in the order given, and in the
 # response phase the middleware will be applied in reverse order.
 MIDDLEWARE_CLASSES = (
-#         "debug_toolbar.middleware.DebugToolbarMiddleware",
     "mezzanine.core.middleware.UpdateCacheMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.redirects.middleware.RedirectFallbackMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "mezzanine.core.request.CurrentRequestMiddleware",
+    "mezzanine.core.middleware.RedirectFallbackMiddleware",
     "mezzanine.core.middleware.TemplateForDeviceMiddleware",
     "mezzanine.core.middleware.TemplateForHostMiddleware",
     "mezzanine.core.middleware.AdminLoginInterfaceSelectorMiddleware",
@@ -295,9 +289,9 @@ PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 
 # These will be added to ``INSTALLED_APPS``, only if available.
 OPTIONAL_APPS = (
-#   "debug_toolbar",
-#   "django_extensions",
-#    "compressor",
+    "debug_toolbar",
+    "django_extensions",
+    "compressor",
     PACKAGE_NAME_FILEBROWSER,
     PACKAGE_NAME_GRAPPELLI,
 )
@@ -311,21 +305,22 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 # These settings are used by the default fabfile.py provided.
 # Check fabfile.py for defaults.
 
-FABRIC = {
-     "SSH_USER": "vagrant", # SSH username
-     "SSH_PASS":  "vagrant", # SSH password (consider key-based authentication)
+# FABRIC = {
+#     "SSH_USER": "", # SSH username
+#     "SSH_PASS":  "", # SSH password (consider key-based authentication)
 #     "SSH_KEY_PATH":  "", # Local path to SSH key file, for key-based auth
-     "HOSTS": ['127.0.0.1:2222'], # List of hosts to deploy to
-     "VIRTUALENV_HOME":  "/home/vagrant/Envs", # Absolute remote path for virtualenvs
-     "PROJECT_NAME": "shitty", # Unique identifier for project
-     "REQUIREMENTS_PATH": "requirements/project.txt", # Path to pip requirements, relative to project
-     "GUNICORN_PORT": 8000, # Port gunicorn will listen on
-     "LOCALE": "en_US.UTF-8", # Should end with ".UTF-8"
-     "LIVE_HOSTNAME": "Debian-64", # Host for public site.
-     "REPO_URL": "git://github.com/grumps/ofmax.git", # Git or Mercurial remote repo URL for the project
-     "DB_PASS": "tester", # Live database password
-     "ADMIN_PASS": "vagrant", # Live admin user password
-}
+#     "HOSTS": [], # List of hosts to deploy to
+#     "VIRTUALENV_HOME":  "", # Absolute remote path for virtualenvs
+#     "PROJECT_NAME": "", # Unique identifier for project
+#     "REQUIREMENTS_PATH": "", # Path to pip requirements, relative to project
+#     "GUNICORN_PORT": 8000, # Port gunicorn will listen on
+#     "LOCALE": "en_US.UTF-8", # Should end with ".UTF-8"
+#     "LIVE_HOSTNAME": "www.example.com", # Host for public site.
+#     "REPO_URL": "", # Git or Mercurial remote repo URL for the project
+#     "DB_PASS": "", # Live database password
+#     "ADMIN_PASS": "", # Live admin user password
+# }
+
 
 ##################
 # LOCAL SETTINGS #
