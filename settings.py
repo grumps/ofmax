@@ -321,6 +321,9 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 #     "ADMIN_PASS": "", # Live admin user password
 # }
 
+ALLOWED_HOSTS = {
+    'ofmax.li', # Allow domain and subdomains
+  }
 
 ##################
 # LOCAL SETTINGS #
