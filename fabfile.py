@@ -7,7 +7,7 @@ from getpass import getpass, getuser
 from glob import glob
 from contextlib import contextmanager
 
-from fabric.api import env, cd, prefix, sudo as _sudo, run as _run, hide, task
+from fabric.api import env, cd, prefix, put, sudo as _sudo, run as _run, hide, task
 from fabric.contrib.files import exists, upload_template
 from fabric.colors import yellow, green, blue, red
 
@@ -20,7 +20,10 @@ conf = {}
 if sys.argv[0].split(os.sep)[-1] == "fab":
     # Ensure we import settings from the current dir
     try:
+<<<<<<< HEAD
         ############Change here for Enviroment#############
+=======
+>>>>>>> mistakebranch
         conf = __import__("settings", globals(), locals(), [], 0).FABRIC_STAGE
         try:
             conf["HOSTS"][0]
@@ -545,7 +548,7 @@ def upload_media():
         env.proj_path, media, env.proj_path))
 
 @task
-#@log_call
+@log_call
 def upload_db():
     # Upload DB and dump it in.
     put("dump.sql", env.proj_path)
