@@ -1,4 +1,3 @@
-
 import os
 import re
 import sys
@@ -20,10 +19,6 @@ conf = {}
 if sys.argv[0].split(os.sep)[-1] == "fab":
     # Ensure we import settings from the current dir
     try:
-<<<<<<< HEAD
-        ############Change here for Enviroment#############
-=======
->>>>>>> mistakebranch
         conf = __import__("settings", globals(), locals(), [], 0).FABRIC_STAGE
         try:
             conf["HOSTS"][0]
@@ -49,7 +44,8 @@ env.proj_path = "%s/%s" % (env.venv_path, env.proj_dirname)
 env.manage = "%s/bin/python %s/project/manage.py" % (env.venv_path,
                                                      env.venv_path)
 env.live_host = conf.get("LIVE_HOSTNAME", env.hosts[0] if env.hosts else None)
-env.repo_url = conf.get("REPO_URL", None)
+env.repo_url = conf.get("REPO_URL", "")
+env.git = env.repo_url.startswith("git") or env.repo_url.endswith(".git")
 env.reqs_path = conf.get("REQUIREMENTS_PATH", None)
 env.gunicorn_port = conf.get("GUNICORN_PORT", 8000)
 env.locale = conf.get("LOCALE", "en_US.UTF-8")
@@ -368,7 +364,7 @@ def create():
                 return False
             remove()
         run("virtualenv %s --distribute" % env.proj_name)
-        vcs = "git" if env.repo_url.startswith("git") else "hg"
+        vcs = "git" if env.git else "hg"
         run("%s clone %s %s" % (vcs, env.repo_url, env.proj_path))
 
     # Create DB and DB user.
@@ -416,7 +412,8 @@ def create():
                "site.save();")
         if env.admin_pass:
             pw = env.admin_pass
-            user_py = ("from django.contrib.auth.models import User;"
+            user_py = ("from mezzanine.utils.models import get_user_model;"
+                       "User = get_user_model();"
                        "u, _ = User.objects.get_or_create(username='admin');"
                        "u.is_staff = u.is_superuser = True;"
                        "u.set_password('%s');"
@@ -483,9 +480,12 @@ def deploy():
         upload_template_and_reload(name)
     with project():
         backup("last.db")
-        run("tar -cf last.tar %s" % static())
-        git = env.repo_url.startswith("git")
-        run("%s > last.commit" % "git rev-parse HEAD" if git else "hg id -i")
+        static_dir = static()
+        if exists(static_dir):
+            run("tar -cf last.tar %s" % static_dir)
+        git = env.git
+        last_commit = "git rev-parse HEAD" if git else "hg id -i"
+        run("%s > last.commit" % last_commit)
         with update_changed_requirements():
             run("git pull origin master -f" if git else "hg pull && hg up -C")
         manage("collectstatic -v 0 --noinput")
@@ -507,8 +507,7 @@ def rollback():
     """
     with project():
         with update_changed_requirements():
-            git = env.repo_url.startswith("git")
-            update = "git checkout" if git else "hg up -C"
+            update = "git checkout" if env.git else "hg up -C"
             run("%s `cat last.commit`" % update)
         with cd(os.path.join(static(), "..")):
             run("tar -xf %s" % os.path.join(env.proj_path, "last.tar"))
@@ -555,11 +554,3 @@ def upload_db():
     postgres('dropdb %s' % env.proj_db)
     postgres('createdb %s -O %s' % (env.proj_db, env.proj_name))
     postgres('pg_restore -c -d %s %s/dump.sql' % (env.proj_db, env.proj_path))
-            
-@task
-@log_call
-def download_db():
-    #Dump and download lastest database.
-    postgres(pg_dump -a -O %s %s/dump.sql' % (env.proj_db, env.proj_path))
-    get('%s/%s' % (env.proj_path, dump.sql))
-
