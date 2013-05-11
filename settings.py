@@ -321,8 +321,9 @@ FABRIC = {
      "ADMIN_PASS": "vagrant", # Live admin user password
 
 
-ALLOWED_HOSTS = {
-    'ofmax.li' # Allow domain and subdomains
+ALLOWED_HOSTS = [
+    'ofmax.li', # Allow domain and subdomains
+	'Debian-64', 
   }
 
 ##################
