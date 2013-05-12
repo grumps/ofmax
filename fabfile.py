@@ -222,7 +222,10 @@ def upload_template_and_reload(name):
     clean = lambda s: s.replace("\n", "").replace("\r", "").strip()
     if clean(remote_data) == clean(local_data):
         return
-    upload_template(local_path, remote_path, env, use_sudo=True, backup=False)
+    try:
+		upload_template(local_path, remote_path, env, use_sudo=True, backup=False)
+    except:
+		print local_path, env
     if owner:
         sudo("chown %s %s" % (owner, remote_path))
     if mode:
@@ -554,3 +557,14 @@ def upload_db():
     postgres('dropdb %s' % env.proj_db)
     postgres('createdb %s -O %s' % (env.proj_db, env.proj_name))
     postgres('pg_restore -c -d %s %s/dump.sql' % (env.proj_db, env.proj_path))
+<<<<<<< HEAD
+=======
+            
+@task
+@log_call
+def download_db():
+    #Dump and download lastest database.
+    postgres('pg_dump -a -O %s %s/dump.sql' % (env.proj_db, env.proj_path))
+    get('%s/%s' % (env.proj_path, dump.sql))
+
+>>>>>>> rewrite
