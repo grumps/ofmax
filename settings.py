@@ -1,4 +1,3 @@
-
 ######################
 # MEZZANINE SETTINGS #
 ######################
@@ -87,7 +86,7 @@ USE_SOUTH = True
 # In the format (('Full Name', 'email@example.com'),
 #                ('Full Name', 'anotheremail@example.com'))
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+# ('Your Name', 'your_email@domain.com'),
 )
 MANAGERS = ADMINS
 
@@ -142,7 +141,7 @@ AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 
@@ -219,7 +218,7 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 ################
 
 INSTALLED_APPS = (
-    "subtheme",    
+    "subtheme",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -305,26 +304,10 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 # These settings are used by the default fabfile.py provided.
 # Check fabfile.py for defaults.
 
-FABRIC = {
-     "SSH_USER": "vagrant", # SSH username
-     "SSH_PASS":  "vagrant", # SSH password (consider key-based authentication)
-#     "SSH_KEY_PATH":  "", # Local path to SSH key file, for key-based auth
-     "HOSTS": ['127.0.0.1:2222'], # List of hosts to deploy to
-     "VIRTUALENV_HOME":  "/home/vagrant/Envs", # Absolute remote path for virtualenvs
-     "PROJECT_NAME": "shitty", # Unique identifier for project
-     "REQUIREMENTS_PATH": "requirements/project.txt", # Path to pip requirements, relative to project
-     "GUNICORN_PORT": 8000, # Port gunicorn will listen on
-     "LOCALE": "en_US.UTF-8", # Should end with ".UTF-8"
-     "LIVE_HOSTNAME": "locahost", # Host for public site.
-     "REPO_URL": "git://github.com/grumps/ofmax.git", # Git or Mercurial remote repo URL for the project
-     "DB_PASS": "tester", # Live database password
-     "ADMIN_PASS": "vagrant", # Live admin user password
-
-}
 ALLOWED_HOSTS = [
     'ofmax.li', # Allow domain and subdomains
-	'Debian-64', 
-  ]
+    'stage.ofmax',
+]
 
 ##################
 # LOCAL SETTINGS #
