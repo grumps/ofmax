@@ -121,8 +121,9 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = False
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = "8bb0fdbe-d89b-411c-b9d4-0464852f7eff8b66fef6-aa0c-408e-866f-5511e71e55177315e713-c435-4899-b90c-cb08c9acbbd6"
+# Make these unique, and don't share it with anybody.
+SECRET_KEY = "%(SECRET_KEY)s"
+NEVERCACHE_KEY = "%(NEVERCACHE_KEY)s"
 
 # Tuple of IP addresses, as strings, that:
 #   * See debug comments, when DEBUG is true
@@ -144,6 +145,10 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+# The numeric mode to set newly-uploaded files to. The value should be
+# a mode you'd pass directly to os.chmod.
+FILE_UPLOAD_PERMISSIONS = 0644
 
 
 #############
