@@ -5,6 +5,7 @@ from functools import wraps
 from getpass import getpass, getuser
 from glob import glob
 from contextlib import contextmanager
+from posixpath import join
 
 from fabric.api import get, env, cd, prefix, put, sudo as _sudo, run as _run, hide, task
 from fabric.contrib.files import exists, upload_template
@@ -346,7 +347,7 @@ def install():
             run("exit")
     sudo("apt-get update -y -q")
     apt("nginx libjpeg-dev python-dev python-setuptools git-core "
-        "postgresql-9.1 libpq-dev memcached supervisor")
+        "postgresql libpq-dev memcached supervisor")
     sudo("easy_install pip")
     sudo("pip install virtualenv mercurial")
 
