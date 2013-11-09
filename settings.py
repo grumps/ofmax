@@ -225,6 +225,7 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 ################
 
 INSTALLED_APPS = (
+    "mezzanine_pagedown",
     "subtheme",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -288,6 +289,12 @@ MIDDLEWARE_CLASSES = (
 # at the moment we are using custom forks of them.
 PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
 PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
+
+# Adding Pagedown
+
+RICHTEXT_WIDGET_CLASS = "mezzanine_pagedown.widgets.PageDownWidget"
+RICHTEXT_FILTER = 'mezzanine_pagedown.filters.codehilite'
+RICHTEXT_FILTER_LEVEL = 3
 
 #########################
 # OPTIONAL APPLICATIONS #

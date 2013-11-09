@@ -540,6 +540,7 @@ def all():
 
 @task
 @log_call
+#TODO fix: Doesn't gather files before attempting to tar.
 def download_media():
     media = 'media.tar.gz'
     run("tar -czvf %s/%s -C %s/static/media/" % (env.proj_path, media,
