@@ -1,0 +1,11 @@
+from django.db import models
+from mezzanine.forms.models import Form
+from mezzanine.pages.models import Page, RichText
+
+
+class ContactLandingPage(Page, RichText):
+	"""
+	LandngPage Class Model
+	"""
+	tracking_code = models.TextField(verbose_name="Tracking Code Snippet.")
+	contact_form = models.ForeignKey(Form, verbose_name="Contact Form.")
