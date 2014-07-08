@@ -68,17 +68,14 @@ $(function() {
 {% for message in messages %}
 <div class="alert alert-{{ message.tags }}" data-alert="alert">
 <a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>{{ message }}
-s
-{% endfor %}
+ {% endfor %}
 {% endnevercache %}
 </div>
 <div id="content" class="container">
 <h1>{% block title %}{% endblock %}</h1>
 <div class="row">
-<div class="col-md-9">
-    {% block main %}{% endblock %}
-</div>
-
+ {% block main %}{% endblock %} 
+{% block rightgutter %}
 <div class="col-md-3">
     {% nevercache %}
     {% include "includes/user_panel.html" %}
@@ -91,7 +88,8 @@ s
     {% endblock %}
     </div>
 </div>
-
+{% endblock %}
+</div>
 </div>
 </div>
 

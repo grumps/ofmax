@@ -3,10 +3,10 @@
 {% tweets_default as tweets %}
 {% load twitter_clean %}
 {% if tweets %}
-<h3>{% trans "Recent Tweets" %}</h3>
+<h3 class="text-center">{% trans "Recent Tweets" %}</h3>
 <ul class="unstyled tweets">
     {% for tweet in tweets %}
-    <blockquote class="pull-right">
+    <blockquote class="blockquote-reverse">
         {% if tweet.is_retweet %}
         <p><span class="recycle">&#x267B;</span>
         <img class="retweet" src="{{ tweet.retweeter_profile_image_url }}">
@@ -14,7 +14,7 @@
         {% endif %}
         <div>{{ tweet.text|safe }}</div>
         <small>
-        <img src="{% httpsize tweet.profile_image_url %}" alt="">
+        
         <a href="https://twitter.com/{{ tweet.user_name }}">@{{ tweet.user_name }}</a>
         {% if tweet.user_name != tweet.full_name %}{% endif %}
         <cite title="Source Title"><span class="timespan">{% blocktrans with sometime=tweet.created_at|timesince %}{{ sometime }} ago{% endblocktrans %}</span></cite></small>
