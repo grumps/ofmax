@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load mezzanine_tags %}
+{% load crispy_forms_tags %}
+
+{% block main %}{{ block.super }}
+<div class="col-lg-8">
+{% editable page.contactlandingpage.content %}
+{{ page.contactlandingpage.content|richtext_filters|safe }}
+{% endeditable %}
+{% editable form.form.content %}
+{{ form.form.content|richtext_filters|safe }}
+{% endeditable %}
+</div>
+<div class="col-lg-4">
+
+    <div class="jumbotron">
+            {% editable form.form.title %}
+            <h3> {{ form.form.title|richtext_filters|safe}}</h3>
+            {% endeditable %}
+            <form class="form-horizontal contact-form" method="post">           
+                <fieldset>
+                    {{ form|crispy }}
+                </fieldset>
+            </form>
+
+    <button type="submit" class="btn btn-info btn-lg"> <span class=" glyphicon glyphicon-send"> </span> {{ form.form.button_text }} </button>
+    <div class="small">* required</div>
+    </div>
+</div>
+{% block rightgutter %}{% endblock %}
+{% endblock %}

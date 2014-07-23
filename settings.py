@@ -98,7 +98,7 @@ MANAGERS = ADMINS
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = None
+TIME_ZONE = 'America/New_York'
 
 # If you set this to True, Django will use timezone-aware datetimes.
 USE_TZ = True
@@ -227,6 +227,8 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 INSTALLED_APPS = (
     "mezzanine_pagedown",
     "subtheme",
+    "landingpage",
+    "crispy_forms",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -261,6 +263,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.tz",
     "mezzanine.conf.context_processors.settings",
+    "mezzanine.pages.context_processors.page",
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -295,6 +298,9 @@ PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 RICHTEXT_WIDGET_CLASS = "mezzanine_pagedown.widgets.PageDownWidget"
 RICHTEXT_FILTER = 'mezzanine_pagedown.filters.codehilite'
 RICHTEXT_FILTER_LEVEL = 3
+
+# Crispy Forms
+CRISPY_TEMPLATE_PACK = "bootstrap3"
 
 #########################
 # OPTIONAL APPLICATIONS #
