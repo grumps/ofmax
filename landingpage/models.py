@@ -10,5 +10,4 @@ class ContactLandingPage(Page, RichText):
     """
     tracking_code = models.TextField(verbose_name="Tracking Code Snippet.")
     contact_form = models.ForeignKey(Form, verbose_name="Contact Form.")
-    portfolio_item = models.ManyToManyField(PortfolioItem, null=True, verbose_name="Portfolio Item")
-    # TODO Set clean to stop anything over 3.
+
