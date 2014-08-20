@@ -228,6 +228,7 @@ INSTALLED_APPS = (
     "mezzanine_pagedown",
     "subtheme",
     "landingpage",
+    "portfolio",
     "crispy_forms",
     "django.contrib.admin",
     "django.contrib.auth",

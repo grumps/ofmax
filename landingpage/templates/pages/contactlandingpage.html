@@ -4,19 +4,17 @@
 
 {% block main %}{{ block.super }}
 <div class="col-lg-8">
-{% editable page.contactlandingpage.content %}
-{{ page.contactlandingpage.content|richtext_filters|safe }}
-{% endeditable %}
-{% editable form.form.content %}
-{{ form.form.content|richtext_filters|safe }}
-{% endeditable %}
+<div class="jumbotron">
+<div class="container">
+    {{ page.contactlandingpage.content|richtext_filters|safe }}
+   <h3> <span class="glyphicon glyphicon-play pull-right"> </span></h3>
+</div>
+</div>
+    {{ form.form.content|richtext_filters|safe }}
 </div>
 <div class="col-lg-4">
-
     <div class="jumbotron">
-            {% editable form.form.title %}
             <h3> {{ form.form.title|richtext_filters|safe}}</h3>
-            {% endeditable %}
             <form class="form-horizontal contact-form" method="post">           
                 <fieldset>
                     {{ form|crispy }}
