@@ -228,7 +228,6 @@ INSTALLED_APPS = (
     "mezzanine_pagedown",
     "subtheme",
     "landingpage",
-    "portfolio",
     "crispy_forms",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -326,7 +325,7 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 # Check fabfile.py for defaults.
 
 ALLOWED_HOSTS = [
-    'ofmax.li', # Allow domain and subdomains
+    'ofmax.li',  # Allow domain and subdomains
     'stage.ofmax',
 ]
 
