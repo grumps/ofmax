@@ -19,12 +19,9 @@ geopy==0.95.1
 grappelli-safe==0.3.11
 html5lib==1.0b3
 icalendar==3.5
-ipython==2.1.0
-jedi==0.5b5
 logilab-common==0.61.0
 mezzanine-pagedown==0.5
 oauthlib==0.6.3
-paramiko==1.9.0
 pep8==1.4.4
 psycopg2==2.4.6
 pycrypto==2.6
