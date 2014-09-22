@@ -74,11 +74,10 @@ $(function() {
 <div id="content" class="container">
 <h1>{% block title %}{% endblock %}</h1>
 <div class="container-fluid">
-<div class="col-xs-12 col-md-9">
  {% block main %}{% endblock %}
  </div>
 {% block rightgutter %}
-<div class="col-md-3">
+<div class="col-md-3 col-xs-9">
     {% nevercache %}
     {% include "includes/user_panel.html" %}
     {% endnevercache %}
