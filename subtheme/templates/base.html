@@ -17,7 +17,6 @@
 
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
-<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.responsive.css">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/mezzanine.css">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/ofmax.css">
 {% ifinstalled cartridge.shop %}
@@ -27,7 +26,7 @@
 {% endcompress %}
 
 {% compress js %}
-<script src="{{ STATIC_URL }}mezzanine/js/{{ settings.JQUERY_FILENAME }}"></script>
+<script src="{{ STATIC_URL }}merightzzanine/js/{{ settings.JQUERY_FILENAME }}"></script>
 <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 <script>
 $(function() {
@@ -47,18 +46,20 @@ $(function() {
 <body id="{% block body_id %}body{% endblock %}">
 
 <header class="navbar navbar-default navbar-fixed-top">
-<div class="navbar-inner text">
+<div class="navbar-inner text">right
 <div class="container">
     <button class="navbar-toggle" data-target="#navbar-main" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <div class="nav-collapse">
     {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/">{{ settings.SITE_TITLE|upper }}</a>{% endif %}
     {% if settings.SITE_TAGLINE %}<p class="tagline">{{ settings.SITE_TAGLINE }}</p>{% endif %}
+    <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse" id="navbar-main">
+
         {% page_menu "pages/menus/dropdown.html" %}
-    </div>
+    </nav>
 </div>
 </div>
 </header>
