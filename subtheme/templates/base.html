@@ -26,8 +26,7 @@
 {% endcompress %}
 
 {% compress js %}
-<script src="{{ STATIC_URL }}merightzzanine/js/{{ settings.JQUERY_FILENAME }}"></script>
-<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}mezzanine/js/{{ settings.JQUERY_FILENAME }}"></script>
 <script>
 $(function() {
     $('.middleinput:text, textarea').addClass('xlarge');
@@ -46,7 +45,7 @@ $(function() {
 <body id="{% block body_id %}body{% endblock %}">
 
 <header class="navbar navbar-default navbar-fixed-top">
-<div class="navbar-inner text">right
+<div class="navbar-inner text">
 <div class="container">
     <button class="navbar-toggle" data-target="#navbar-main" data-toggle="collapse" type="button">
         <span class="sr-only">Toggle navigation</span>
