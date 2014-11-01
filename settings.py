@@ -225,10 +225,10 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 ################
 
 INSTALLED_APPS = (
-    "mezzanine_pagedown",
     "subtheme",
     "landingpage",
     "crispy_forms",
+    "mezzanine_pagedown",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -296,11 +296,12 @@ PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 # Adding Pagedown
 
 RICHTEXT_WIDGET_CLASS = "mezzanine_pagedown.widgets.PageDownWidget"
-RICHTEXT_FILTER = 'mezzanine_pagedown.filters.codehilite'
+RICHTEXT_FILTERS = (
+    'mezzanine_pagedown.filters.codehilite',
+)
 RICHTEXT_FILTER_LEVEL = 3
+PAGEDOWN_SERVER_SIDE_PREVIEW = True
 
-# Crispy Forms
-CRISPY_TEMPLATE_PACK = "bootstrap3"
 
 #########################
 # OPTIONAL APPLICATIONS #

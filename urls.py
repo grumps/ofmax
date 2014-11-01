@@ -1,6 +1,7 @@
 
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+import mezzanine_pagedown.urls
 
 from mezzanine.core.views import direct_to_template
 
@@ -43,6 +44,9 @@ urlpatterns = patterns("",
     # should be used if you want to customize the homepage's template.
 
     # url("^$", "mezzanine.pages.views.page", {"slug": "/"}, name="home"),
+
+    # pagedown serverside preview
+    ("^pagedown/", include(mezzanine_pagedown.urls)),
 
     # HOMEPAGE FOR A BLOG-ONLY SITE
     # -----------------------------
