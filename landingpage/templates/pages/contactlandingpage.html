@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block main %}{{ block.super }}
-<div class="col-lg-8">
+<div class="col-lg-7">
 <div class="jumbotron">
 <div class="container">
     {{ page.contactlandingpage.content|richtext_filters|safe }}
@@ -11,7 +11,7 @@
 </div>
     {{ form.form.content|richtext_filters|safe }}
 </div>
-<div class="col-lg-4">
+<div class="col-lg-5">
     <div class="jumbotron">
             <h3> {{ form.form.title|richtext_filters|safe}}</h3>
             <form class="form-horizontal contact-form" method="post">           
